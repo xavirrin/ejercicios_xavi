@@ -38,35 +38,32 @@ public class Practica4 {
             }
         }
 
-            System.out.println("El producto de la multiplicación es " + num1 * num2);
-            System.out.println("El proceso es:");
+        System.out.println("El producto de la multiplicación es " + num1 * num2);
+        System.out.println("El proceso es:");
 
-            String numA = Integer.toString(num1);
-            String numB = Integer.toString(num2);
+        String numA = Integer.toString(num1);
+        String numB = Integer.toString(num2);
 
-            System.out.println("    " + numA);
-            System.out.println("  x " + numB);
-            System.out.println("-------------");
+        System.out.println("    " + numA);
+        System.out.println("  x " + numB);
+        System.out.println("-------------");
 
-            String numB_3 = numB.substring(2, 3);
-            String numB_2 = numB.substring(1, 2);
-            String numB_1 = numB.substring(0, 1);
+        String numB_3 = numB.substring(2, 3);
+        String numB_2 = numB.substring(1, 2);
+        String numB_1 = numB.substring(0, 1);
 
-            int num_3 = Integer.parseInt(numB_3);
-            int num_2 = Integer.parseInt(numB_2);
-            int num_1 = Integer.parseInt(numB_1);
+        int num_3 = Integer.parseInt(numB_3);
+        int num_2 = Integer.parseInt(numB_2);
+        int num_1 = Integer.parseInt(numB_1);
 
-            System.out.println("    " + num1 * num_3);
-            System.out.println("   " + num1 * num_2 + "x");
-            System.out.println("  " + num1 * num_1 + "xx");
-            System.out.println("-------------");
+        System.out.println("    " + num1 * num_3);
+        System.out.println("   " + num1 * num_2 + "x");
+        System.out.println("  " + num1 * num_1 + "xx");
+        System.out.println("-------------");
 
-            //int numa = Integer.parseInt(numA);
-            //int numb = Integer.parseInt(numB);
+        System.out.println("  " + num1 * num2);
 
-            System.out.println("  " + num1 * num2);
-
-        }
     }
+}
 
 

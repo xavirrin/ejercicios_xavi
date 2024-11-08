@@ -12,15 +12,15 @@ public class MesaElectoral {
         System.out.println("Hola " + nombre + ". Introduce tu edad.");
 
         boolean a = true;
-        while (a == true) {
+        while (a) {
             try {
                 int edad = teclado.nextInt();
                 if (edad < 0) {
                     System.out.println("La edad no puede ser negativa. Inténtalo de nuevo.");
 
                 } else if (edad >= 18) {
-                    int añoNacimiento = 2024 - edad + 18;
-                    System.out.println("Enhorabuena " + nombre + ". Puedes votar desde " + añoNacimiento + ".");
+                    int anyoNacimiento = 2024 - edad + 18;
+                    System.out.println("Enhorabuena " + nombre + ". Puedes votar desde " + anyoNacimiento + ".");
                     a = false;
                 } else {
                     int edadRestante = 18 - edad;

@@ -104,12 +104,30 @@ public class Main {
 
 //        ExamenPractico ej1 = new ExamenPractico();
 //        ej1.ej1();
-
-        ExamenPractico ej2 = new ExamenPractico();
-        ej2.ej2();
+//
+//        ExamenPractico ej2 = new ExamenPractico();
+//        ej2.ej2();
 
 //        Vectores ej2 = new Vectores();
 //        ej2.ej2();
+
+//        Vectores ej3 = new Vectores();
+//        ej3.ej3();
+
+//        Vectores ej5 = new Vectores();
+//        ej5.ej5();
+
+//        Vectores ej6 = new Vectores();
+//        ej6.ej6();
+
+//        Vectores ej7 = new Vectores();
+//        ej7.ej7();
+
+//        Vectores ej9 = new Vectores();
+//        ej9.ej9();
+
+        Vectores ej10 = new Vectores();
+        ej10.ej10();
 
 
 

@@ -126,8 +126,8 @@ public class Main {
 //        Vectores ej9 = new Vectores();
 //        ej9.ej9();
 
-        Vectores ej10 = new Vectores();
-        ej10.ej10();
+        Vectores samurais = new Vectores();
+        samurais.samurais();
 
 
 

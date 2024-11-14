@@ -63,6 +63,9 @@ public class Main {
 //        Practicas isbn = new Practicas();
 //        isbn.isbn();
 
+        Practicas ruleta = new Practicas();
+        ruleta.ruleta();
+
 //        EjerRandom random1 = new EjerRandom();
 //        random1.random1();
 
@@ -126,8 +129,8 @@ public class Main {
 //        Vectores ej9 = new Vectores();
 //        ej9.ej9();
 
-        Vectores samurais = new Vectores();
-        samurais.samurais();
+//        Vectores samurais = new Vectores();
+//        samurais.samurais();
 
 
 

@@ -290,7 +290,7 @@ public class Practicas {
             //CREAMOS EL BOLETO DEL JUGADOR EN UN STRING
             String boleto = teclado.nextLine();
             //Y BOOLEANO CONTROLANDO EL FORMATO
-            boolean formato_boleto = boleto.matches("\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}/\\d{1,2}");
+            boolean formato_boleto = boleto.matches("\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}/\\d{1}");
             //SI EL FORMATO ES INCORRECTO: ERROR
             if (!formato_boleto) {
                 System.out.println("El formato es incorrecto.");

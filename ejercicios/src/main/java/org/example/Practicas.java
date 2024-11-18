@@ -276,16 +276,137 @@ public class Practicas {
         }
         System.out.println("Te has quedado sin fichas. Gracias por jugar.");
     }
-}
-//8. El programa debe sortear al azar un color y un número aleatoriamente. Si es par o impar se debe calcular.
-//
-//9. Mostrar qué color, opción par/impar y número han tocado tras "girar" la ruleta.
-//
-//10. Verificar si el usuario ha tenido suerte.
-//
-//Si acierta tanto número como color y que es par/impar (mostrar que HA GANADO).
-//Si acierta sólo el color (mostrar que ha acertado el color).
-//Si acierta sólo si es par o impar (mostrar que ha acertado que es par/impar).
-//Si acierta el número (mostrar que ha acertado el número). En caso de ser 0, notificar que HA GANADO y los demás usuarios de la mesa pierden.
-//Si no acierta nada, mostrar que ha perdido.
 
+    public void primitiva() {
+
+        Scanner teclado = new Scanner(System.in);
+        Random aleatorio = new Random();
+//BIENVENIDA A LA SUPERPRIMITIVA. EMPEZAMOS PIDIENDO UN BOLETO CON UN FORMATO ESPECIFICO
+        System.out.println("\nBienvenido al sorteo de la Primitiva.");
+        System.out.println("\n¿Con qué número desea jugar? ");
+        System.out.println("\nEl formato debe ser (0-0-0-0-0-0/0)");
+        //LE METO YA EL TRY PARA QUE SI EL FORMATO NO ES CORRECTO NO ME PETE
+        try {
+            //CREAMOS EL BOLETO DEL JUGADOR EN UN STRING
+            String boleto = teclado.nextLine();
+            //Y BOOLEANO CONTROLANDO EL FORMATO
+            boolean formato_boleto = boleto.matches("\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}/\\d{1,2}");
+            //SI EL FORMATO ES INCORRECTO: ERROR
+            if (!formato_boleto) {
+                System.out.println("El formato es incorrecto.");
+                //SI NO, SEGUIMOS
+            } else {
+                //Y LE QUITAMOS MEDIANTE SPLIT LOS GUIONES Y LA BARRA
+                String boleto_array[] = boleto.split("[-/]");
+                System.out.println(Arrays.toString(boleto_array));
+                //CREAMOS UN VECTOR INT
+                int boleto_num[] = new int[boleto_array.length];
+
+                //Y VOLCAMOS EN ÉL EL VECTOR STRING
+                for (int i = 0; i < boleto_array.length; i++) {
+                    boleto_num[i] = Integer.parseInt(boleto_array[i]);
+                }
+                //CREAMOS BOOLEANO PARA CONTROLAR QUE LOS NUMEROS ESTEN ENTRE 1 Y 49
+                boolean boleto_correcto = true;
+
+                for (int i = 0; i < boleto_num.length; i++) {
+                    if (i < boleto_num.length - 1 && (boleto_num[i] < 1 || boleto_num[i] > 49)) {
+                        System.out.println("Lo siento, los números del boleto deben estar entre 01 y 49.");
+                        boleto_correcto = false;
+                    } else if (i == boleto_num.length - 1 && (boleto_num[i] < 1 || boleto_num[i] > 9)) {
+                        System.out.println("El número del reintegro debe estar entre 01 y 09.");
+                        boleto_correcto = false;
+                    }
+                }
+                //EN CASO DE ERROR EL BOOLEANO ES FALSO Y NO SERIAN VALIDOS, SI ES VALIDO SEGUIMOS
+                if (boleto_correcto) {
+                    System.out.println("El boleto es válido.");
+                //VAMOS CON EL SORTEO
+                    //CREAMOS ARRAY PARA EL SORTEO CON LENGHT DEL BOLETO - 1 PARA NO CALCULAR EL REINTEGRO
+                    int sorteo_boleto[] = new int[boleto_array.length-1];
+                    for (int i = 0; i < sorteo_boleto.length; i++) {
+                        sorteo_boleto[i] = aleatorio.nextInt(49) + 1;
+                    }
+                    //LO ORDENAMOS
+                    Arrays.sort(sorteo_boleto);
+                    //Y CREAMOS BOOLEANO FALSO PARA CONTROLAR QUE ESTA ORDENADO Y SIN REPETIDOS
+                    boolean boleto_ordenado = false;
+                    //MIENTRAS NO ESTE CORRECTO, EMPEZAMOS EL BUCLE HACIENDOLO TRUE, PARA QUE SI NO SE CONVIERTE
+                    //AL TERMINAR, PODAMOS SALIR DEL BUCLE, MIENTRAS NO SEA ASI, SEGUIREMOS CALCULANDO RANDOMS
+                    while (!boleto_ordenado) {
+                        boleto_ordenado = true;
+
+                        for (int i = 0; i < sorteo_boleto.length - 1; i++) {
+                            if (sorteo_boleto[i] == sorteo_boleto[i + 1]) {
+                                sorteo_boleto[i] = aleatorio.nextInt(49) + 1;
+                                boleto_ordenado = false;
+                            }
+                        }
+                        //Y LO VOLVEMOS A ORDENAR
+                        Arrays.sort(sorteo_boleto);
+                    }
+                    System.out.println("\nHa salido:");
+                    System.out.println("\t" + Arrays.toString(sorteo_boleto));
+
+                    //AHORA VAMOS A CALCULAR EL NUMERO COMPLEMENTARIO
+                    int complementario;
+                    //SEGUIMOS CON LOS BOOLEANOS
+                    boolean comple_repe = true;
+                    //HACEMOS UN DO WHILE PARA QUE AL MENOS LO CALCULE UNA VEZ
+                    do {
+                        complementario = aleatorio.nextInt(49) + 1;
+                        comple_repe = false;
+                        //Y SI ESTA REPETIDO LO VOLVEMOS A CALCULAR
+                        for (int i = 0; i < sorteo_boleto.length; i++) {
+                            if (complementario == sorteo_boleto[i]) {
+                                comple_repe = true;
+                                break;
+                            }
+                        }
+                    } while (comple_repe);
+
+                    System.out.println("\tNúmero complementario: " + complementario);
+
+                    //Y CALCULAMOS UN NUMERO ENTRE 1 Y 10 PARA EL REINTEGRO
+                    int reintegro;
+                    boolean reintegro_repe = true;
+                    //HACEMOS UN DO WHILE PARA QUE AL MENOS LO CALCULE UNA VEZ
+                    do {
+                        reintegro = aleatorio.nextInt(10) + 1;
+                        reintegro_repe = false;
+                        //Y SI ESTA REPETIDO LO VOLVEMOS A CALCULAR
+                        for (int i = 0; i < sorteo_boleto.length; i++) {
+                            if (reintegro == sorteo_boleto[i]) {
+                                reintegro_repe = true;
+                                break;
+                            }
+                        }
+                    } while (reintegro_repe);
+                    System.out.println("\tReintegro: " + reintegro);
+
+                    //UNA VEZ TENEMOS EL SORTEO TERMINADO, VAMOS A VER CUANTO HEMOS ACERTADO
+                    //CREAMOS CONTADOR DE ACIERTOS
+                    int aciertos = 0;
+                    //Y HACEMOS DOS BUCLES FOR ANIDADOS PARA IR COMPARANDO TODOS LOS NUMEROS DEL BOLETO SORTEADO
+                    //CON CADA NUMERO DE NUESTRO BOLETO INTRODUCIDO
+                    for (int i = 0; i < sorteo_boleto.length; i++) {
+                        for (int j = 0; j < sorteo_boleto.length ; j++) {
+                            if (boleto_num[i] == sorteo_boleto[j]) {
+                                //Y SI HAY ALGUNA COINCIDENCIA NOS ANOTAMOS UN TANTO
+                                aciertos++;
+                            }
+                        }
+                    }
+                    //MOSTRAMOS EL RESULTADO
+                    System.out.println("\nHa acertado " + aciertos);
+                    if(boleto_num[boleto_num.length - 1] == reintegro){
+                        System.out.println("\n¡Enhorabuena! Te llevas el reintegro");
+                    }
+                }
+            }
+            //Y AQUI TENEMOS EL TRY DEL PRINCIPIO QUE CONTROLA EL FORMATO
+        } catch (NumberFormatException e) {
+            System.out.println("El formato es incorrecto.");
+        }
+    }
+}

@@ -287,6 +287,44 @@ public class Vectores {
             System.out.println("¡Ha ganado el Equipo 2!");
         }
     }
+
+    public void vectpractica1() {
+        int vect[] = {4, 8, 9, 1, 2, 2, 1, 3};
+        int vectaux[] = new int[vect.length];
+        int contador = 0;
+
+        Arrays.sort(vect);
+
+        for (int i = 0; i < vect.length - 1; i++) {
+            if (vect[i] != vect[i + 1]) {
+                vectaux[i] = vect[i];
+            }
+        }
+        if (vect[vect.length - 2] == vectaux[vect.length - 2]) {
+            vectaux[vect.length - 1] = vect[vect.length - 1];
+        }
+
+        for (int i = 0; i < vectaux.length; i++) {
+            if (vectaux[i] != 0) {
+                contador++;
+            }
+        }
+        int vectfinal[] = new int[contador];
+
+        for (int i = 0; i < vectaux.length - 1; i++) {
+            for (int j = 0; j < vectfinal.length - 1; j++) {
+                if (vectaux[i] != 0) {
+                    vectfinal[i] = vectaux[j];
+                }else{
+                    j--;
+                }
+            }
+        }
+
+        System.out.println(Arrays.toString(vect));
+        System.out.println(Arrays.toString(vectaux));
+
+    }
 }
 
 

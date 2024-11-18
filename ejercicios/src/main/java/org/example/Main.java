@@ -63,8 +63,11 @@ public class Main {
 //        Practicas isbn = new Practicas();
 //        isbn.isbn();
 
-        Practicas ruleta = new Practicas();
-        ruleta.ruleta();
+//        Practicas ruleta = new Practicas();
+//        ruleta.ruleta();
+
+        Practicas primitiva = new Practicas();
+        primitiva.primitiva();
 
 //        EjerRandom random1 = new EjerRandom();
 //        random1.random1();
@@ -90,7 +93,7 @@ public class Main {
 //        Pre_examen ej4 = new Pre_examen();
 //        ej4.ej4();
 
-//       Pre_examen ej5 = new Pre_examen();
+//        Pre_examen ej5 = new Pre_examen();
 //        ej5.ej5();
 
 //        Pre_examen ej6 = new Pre_examen();
@@ -132,6 +135,8 @@ public class Main {
 //        Vectores samurais = new Vectores();
 //        samurais.samurais();
 
+//        Vectores vectpractica1 = new Vectores();
+//        vectpractica1.vectpractica1();
 
 
 

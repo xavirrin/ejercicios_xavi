@@ -313,8 +313,8 @@ public class Practicas {
                     if (i < boleto_num.length - 1 && (boleto_num[i] < 1 || boleto_num[i] > 49)) {
                         System.out.println("Lo siento, los números del boleto deben estar entre 01 y 49.");
                         boleto_correcto = false;
-                    } else if (i == boleto_num.length - 1 && (boleto_num[i] < 1 || boleto_num[i] > 9)) {
-                        System.out.println("El número del reintegro debe estar entre 01 y 09.");
+                    } else if (i == boleto_num.length - 1 && (boleto_num[i] < 0 || boleto_num[i] > 9)) {
+                        System.out.println("El número del reintegro debe estar entre 0 y 9.");
                         boleto_correcto = false;
                     }
                 }
@@ -367,12 +367,14 @@ public class Practicas {
 
                     System.out.println("\tNúmero complementario: " + complementario);
 
+//                    sorteo_boleto[6] = complementario;
+
                     //Y CALCULAMOS UN NUMERO ENTRE 1 Y 10 PARA EL REINTEGRO
                     int reintegro;
                     boolean reintegro_repe = true;
                     //HACEMOS UN DO WHILE PARA QUE AL MENOS LO CALCULE UNA VEZ
                     do {
-                        reintegro = aleatorio.nextInt(10) + 1;
+                        reintegro = aleatorio.nextInt(10);
                         reintegro_repe = false;
                         //Y SI ESTA REPETIDO LO VOLVEMOS A CALCULAR
                         for (int i = 0; i < sorteo_boleto.length; i++) {
@@ -398,7 +400,39 @@ public class Practicas {
                         }
                     }
                     //MOSTRAMOS EL RESULTADO
-                    System.out.println("\nHa acertado " + aciertos);
+//                    System.out.println("\nHa acertado " + aciertos);
+                    switch (aciertos){
+                        case 0:
+                            System.out.println("0 aciertos. No premiado.");
+                            break;
+                        case 1:
+                            System.out.println("1 acierto. No premiado.");
+                            break;
+                        case 2:
+                            System.out.println("2 aciertos. No premiado.");
+                            break;
+                        case 3:
+                            System.out.println("3 aciertos. Premio de 5ª categoría.");
+                            break;
+                        case 4:
+                            System.out.println("4 aciertos. Premio de 4ª categoría.");
+                            break;
+                        case 5:
+                            System.out.println("5 aciertos. Premio de 3ª categoría.");
+                            break;
+                        case 6:
+                            if(aciertos == 5){
+                                sorteo_boleto[6] = complementario;
+                                boolean complementario_correcto = Arrays.asList(sorteo_boleto).contains(complementario);
+                                if(complementario_correcto){
+                                    System.out.println("5 aciertos + número complementario. Premio de 2ª categoría.");
+                                }
+                            }
+                            break;
+                        case 7:
+                            System.out.println("¡Wow! Has acertado los 6 números y el reintegro. Ya no tendrás que coger el bus nunca más.");
+                        default:
+                    }
                     if(boleto_num[boleto_num.length - 1] == reintegro){
                         System.out.println("\n¡Enhorabuena! Te llevas el reintegro");
                     }

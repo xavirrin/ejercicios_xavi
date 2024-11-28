@@ -66,8 +66,11 @@ public class Main {
 //        Practicas ruleta = new Practicas();
 //        ruleta.ruleta();
 
+//        Practicas primitiva = new Practicas();
+//        primitiva.primitiva();
+
         Practicas primitiva = new Practicas();
-        primitiva.primitiva();
+        primitiva.sopa_letras();
 
 //        EjerRandom random1 = new EjerRandom();
 //        random1.random1();
@@ -137,6 +140,16 @@ public class Main {
 
 //        Vectores vectpractica1 = new Vectores();
 //        vectpractica1.vectpractica1();
+
+//        Vectores primos = new Vectores();
+//        primos.primos();
+
+//        Matrices pruebas = new Matrices();
+//        pruebas.pruebas4();
+
+//        CumpleJose tresenraya = new CumpleJose();
+//        tresenraya.tresenraya();
+
 
 
 

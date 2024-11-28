@@ -321,9 +321,9 @@ public class Practicas {
                 //EN CASO DE ERROR EL BOOLEANO ES FALSO Y NO SERIAN VALIDOS, SI ES VALIDO SEGUIMOS
                 if (boleto_correcto) {
                     System.out.println("El boleto es válido.");
-                //VAMOS CON EL SORTEO
+                    //VAMOS CON EL SORTEO
                     //CREAMOS ARRAY PARA EL SORTEO CON LENGHT DEL BOLETO - 1 PARA NO CALCULAR EL REINTEGRO
-                    int sorteo_boleto[] = new int[boleto_array.length-1];
+                    int sorteo_boleto[] = new int[boleto_array.length - 1];
                     for (int i = 0; i < sorteo_boleto.length; i++) {
                         sorteo_boleto[i] = aleatorio.nextInt(49) + 1;
                     }
@@ -392,7 +392,7 @@ public class Practicas {
                     //Y HACEMOS DOS BUCLES FOR ANIDADOS PARA IR COMPARANDO TODOS LOS NUMEROS DEL BOLETO SORTEADO
                     //CON CADA NUMERO DE NUESTRO BOLETO INTRODUCIDO
                     for (int i = 0; i < sorteo_boleto.length; i++) {
-                        for (int j = 0; j < sorteo_boleto.length ; j++) {
+                        for (int j = 0; j < sorteo_boleto.length; j++) {
                             if (boleto_num[i] == sorteo_boleto[j]) {
                                 //Y SI HAY ALGUNA COINCIDENCIA NOS ANOTAMOS UN TANTO
                                 aciertos++;
@@ -401,7 +401,7 @@ public class Practicas {
                     }
                     //MOSTRAMOS EL RESULTADO
 //                    System.out.println("\nHa acertado " + aciertos);
-                    switch (aciertos){
+                    switch (aciertos) {
                         case 0:
                             System.out.println("0 aciertos. No premiado.");
                             break;
@@ -421,10 +421,10 @@ public class Practicas {
                             System.out.println("5 aciertos. Premio de 3ª categoría.");
                             break;
                         case 6:
-                            if(aciertos == 5){
+                            if (aciertos == 5) {
                                 sorteo_boleto[6] = complementario;
                                 boolean complementario_correcto = Arrays.asList(sorteo_boleto).contains(complementario);
-                                if(complementario_correcto){
+                                if (complementario_correcto) {
                                     System.out.println("5 aciertos + número complementario. Premio de 2ª categoría.");
                                 }
                             }
@@ -433,7 +433,7 @@ public class Practicas {
                             System.out.println("¡Wow! Has acertado los 6 números y el reintegro. Ya no tendrás que coger el bus nunca más.");
                         default:
                     }
-                    if(boleto_num[boleto_num.length - 1] == reintegro){
+                    if (boleto_num[boleto_num.length - 1] == reintegro) {
                         System.out.println("\n¡Enhorabuena! Te llevas el reintegro");
                     }
                 }
@@ -441,6 +441,144 @@ public class Practicas {
             //Y AQUI TENEMOS EL TRY DEL PRINCIPIO QUE CONTROLA EL FORMATO
         } catch (NumberFormatException e) {
             System.out.println("El formato es incorrecto.");
+        }
+    }
+
+    public void sopa_letras() {
+
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.println("Bienvenido a la sopa de letras.");
+        //COMENZAMOS INICIALIZANDO FILAS Y COLUMNAS PORQUE SI LO HAGO DENTRO DEL TRY CATCH LUEGO NO EXISTEN
+        int filas = 0;
+        int columnas = 0;
+        //CREAMOS BOOLEANO PARA CONDICIONAR UN BUCLE EN EL QUE PIDAMOS UN NUMERO DE FILAS Y DE COLUMNAS
+        // Y QUE NO NOS VALGA NINGUNA OTRA COSA QUE NUMEROS
+        boolean fc_numeros = false;
+        while (!fc_numeros) {
+            try {
+                System.out.println("Introduce el número de filas que tendrá:");
+                //METEMOS FILAS
+                filas = teclado.nextInt();
+                System.out.println("Ahora el número de columnas:");
+                //METEMOS COLUMNAS
+                columnas = teclado.nextInt();
+                fc_numeros = true; // SALIMOS DEL BUCLE SI ESTAN CORRECTAS
+            } catch (InputMismatchException e) {
+                System.out.println("Error. Debe introducir solo números.");
+                teclado.nextLine(); //LIMPIAMOS EL BUFFER PARA NO ENTRAR EN EL BUCLE INFINITO
+            }
+        }
+
+        teclado.nextLine(); // ESTO LO HE HECHO PORQUE NO FUNCIONABA SI NO LO HACÍA, NO ENTIENDO MUY BIEN POR QUE LO HAGO
+        //PERO DESPUES DE PELEARME UNA HORA CON EL CODIGO, INTERNET ME HA DICHO QUE ME FALTABA ESTO...
+
+        //CREAMOS NUESTRA MATRIZ PARA LA SOPA DE LETRAS CON TAMAÑO ANTES INTRODUCIDO EN FILAS Y COLUMNAS
+        String sopa[][] = new String[filas][columnas];
+
+        //Y ABRIMOS FOR PARA EMPEZAR A LLENAR LA SOPA
+        for (int i = 0; i < filas; i++) {
+            //BOOLEANO PARA ASEGURARME DE QUE EL FORMATO ES CORRECTO, SOLO LETRAS MINS. Y MAYS.
+            boolean formato = false;
+            while (!formato) {
+                //AQUI LE PONGO A LA FIILA I + 1 PARA QUE EL USUARIO LO ENTIENDA MEJOR
+                System.out.println("Introduce las letras de la fila " + (i + 1) + " (deben ser " + columnas + " letras):");
+                //TRY CATCH PARA CONTROLAR QUE NO SE ROMPA SI HAY MAS LETRAS DE LAS QUE CABEN
+                try {
+                    String fila = teclado.nextLine();
+                    fila = fila.toLowerCase();
+                    //SI EL FORMATO ES EL QUE BUSCAMOS Y TIENE EXACTAMENTE EL NUMERO DE LETRAS QUE DE LENGTH,
+                    //BOOLEANO TRUE PARA PODER SALIR DEL BUCLE
+                    if (fila.matches("[a-zA-Z]+") && fila.length() == columnas) {
+                        formato = true;
+                    //AQUI VAMOS INTRODUCIENDO CADA LETRA DEL STRING INTRODUCIDO MEDIANTE EL CHARAT(J)
+                        //EN LA POSICION I J
+                        for (int j = 0; j < columnas; j++) {
+                            sopa[i][j] = String.valueOf(fila.charAt(j));
+                        }
+                    } else {
+                        System.out.println("Error. Debes introducir " + columnas + " letras.");
+                    }
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("Error. Debe introducir " + columnas + " letras.");
+                }
+            }
+        }
+        //UNA VEZ QUE TENEMOS NUESTRA SOPA DE LETRAS CREADA
+        System.out.println("\nSopa de letras creada:");
+        //LA MOSTRAMOS.
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                //VAMOS MOSTRANDO CADA FILA
+                System.out.print(sopa[i][j] + " ");
+            } // Y LE AÑADIMOS UN PRINLN PARA QUE LA SIGUIENTE FILA QUEDE DEBAJO
+            System.out.println();
+        }
+        //AHORA VAMOS A BUSCAR UNA PALABRA DE IZQ A DCHA Y DE ARRIBA A ABAJO
+        System.out.println("Introduce la palabra a buscar:");
+        //GUARDAMOS PALABRA
+        String palabra = teclado.nextLine();
+        //HACEMOS QUE NO DISTINGA ENTRE MAYS Y MINS
+        palabra = palabra.toLowerCase();
+
+        //Y HACEMOS LO MISMO QUE ANTES PARA CONTROLAR QUE ESTE TANTO EN MINS COMO EN MAYS PERO SIN NUMEROS
+        boolean formato2 = palabra.matches("[a-zA-Z]+");
+        //SI ES CORRECTO SEGUIMOS
+        if (formato2) { //Y SEPARAMOS LA PALABRA MEDIANTE SPLIT PARA CONVERTIRLA EN ARRAY
+            String palabraArray[] = palabra.split("");
+            //CREAMOS BOOLEANO PARA DETERMINAR SI ENCONTRAMOS LA PALABRA
+            boolean palabra_encontrada = false;
+            //DOBLE FOR PARA BUSCAR EN HORIZONTAL Y VERTICAL
+            for (int i = 0; i < filas; i++) {
+                for (int j = 0; j < columnas; j++) {
+                    // Y AHORA VAMOS A BUSCAR SI LA PALABRA INTRODUCIDA ESTA EN HORIZONTAL:
+                    //PARA ELLO EMPEZAMOS DESCARTANDO LAS LETRAS QUE NO TENGAN SUFICIENTE ESPACIO A SU DERECHA
+                    //COMO PARA SER LA PALABRA CORRECTA. EN CASO DE BUSCAR HOLA, SI HUBIERA UNA H EN LA ULTIMA POSICION
+                    //DE UNA FILA, NO EMPEZARIA EL FOR PARA BUSCAR
+                    if (j + palabraArray.length <= columnas) {
+                        //Y AHORA CREAMOS BOOLEANO PARA VER SI LA LETRA DE LA SOPA VA COINCIDIENDO CON LA QUE BUSCAMOS
+                        boolean letra_coincide = true;
+                        //CREAMOS FOR PARA QUE MIENTRAS K SEA MENOR QUE EL LENGTH DE LA PALABRA BUSCADA VAYA AUMENTANDO
+                        for (int k = 0; k < palabraArray.length; k++) {
+                            //Y AQI ESTA LA CLAVE. SI LA POSICION + K ES IGUAL QUE LA POSICION K DE LA PALABRA BUSCADA,
+                            //SEGUIMOS BUSCANDO HASTA LLEGAR AL FIN DEL LENTGH DE LA PALABRA BUSCADA
+                            //PERO SI NO ES IGUAL, BOOLEANO FALSO,
+                            if (!sopa[i][j + k].equals(palabraArray[k])) {
+                                letra_coincide = false;
+                                j += k; // LE SUMAMOS K A LA POSICION EN LA QUE ESTEMOS PARA QUE NO VUELVA A EMPEZAR
+                                //DESDE EL PRINCIPIO Y CAIGA EN EL MISMA LETRA INFINITAMENTE, Y SALIMOS CON BREAK
+                                break;
+                            }
+                        }//SI EL BOOLEANO ES TRUE, LE DAMOS TRUE A PALABRA ENCONTRADA Y LA MOSTRAMOS COMO ENCONTRADA
+                        if (letra_coincide) {
+                            palabra_encontrada = true;
+                            System.out.println("Palabra encontrada!!! En posición " + i + " , " + j + ", en horizontal.");
+                        }
+                    }
+                    //Y SEGUIMOS BUSCANDO EN VERTICAL
+                    if (i + palabraArray.length <= filas) {
+                        //REPETIMOS MISMA OPERACIN PERO EN VERTICAL,
+                        boolean letra_coincide = true;
+                        //SUMANDOLE K A I, EN LUGAR DE A J
+                        for (int k = 0; k < palabraArray.length; k++) {
+                            if (!sopa[i + k][j].equals(palabraArray[k])) {
+                                letra_coincide = false;
+                                break;
+                            }
+                        }// SI ENCONTRAMOS PALABRA EN VERTICAL, BOOELANO TRUE Y MOSTRAMOS
+                        if (letra_coincide) {
+                            palabra_encontrada = true;
+                            System.out.println("Palabra encontrada!!! En posición " + i + " , " + j + ", en vertical.");
+                        }
+                    }
+                }
+            }
+            //SI NO HEMOS VERIFICADO BOOLEANO, NO HEMOS ENCONTRADO PALABRA
+            if (!palabra_encontrada) {
+                System.out.println("Palabra no encontrada en la sopa de letras.");
+            }
+        } else {
+            System.out.println("La palabra debe contener únicamente letras.");
         }
     }
 }

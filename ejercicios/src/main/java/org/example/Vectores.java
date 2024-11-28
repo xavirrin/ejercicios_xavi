@@ -325,6 +325,25 @@ public class Vectores {
         System.out.println(Arrays.toString(vectaux));
 
     }
+
+    public void primos(){
+
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.println("Introduzca el valor m:");
+        int m = teclado.nextInt();
+
+        System.out.println("Primos: ");
+        bucle1:
+        for (int i = 2; i < m ; i++) {
+            for (int j = 2; j < i; j++) {
+                if(i%j==0){
+                    continue bucle1;
+                }
+            }
+            System.out.print(i + " ");
+        }
+    }
 }
 
 

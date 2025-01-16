@@ -69,8 +69,8 @@ public class Main {
 //        Practicas primitiva = new Practicas();
 //        primitiva.primitiva();
 
-        Practicas primitiva = new Practicas();
-        primitiva.sopa_letras();
+//        Practicas primitiva = new Practicas();
+//        primitiva.hello_worl();
 
 //        EjerRandom random1 = new EjerRandom();
 //        random1.random1();
@@ -151,6 +151,10 @@ public class Main {
 //        tresenraya.tresenraya();
 
 
+//        int grados = 17;
+        Metodos.pruebas_mismaclase();
+
+//        System.out.println("Los " + grados + " grados celsius convertidos a grados Kelvin son " + grados_kelvin);
 
 
     }
